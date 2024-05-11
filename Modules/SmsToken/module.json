@@ -1,0 +1,11 @@
+{
+    "name": "SmsToken",
+    "alias": "smstoken",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SmsToken\\Providers\\SmsTokenServiceProvider"
+    ],
+    "files": []
+}
