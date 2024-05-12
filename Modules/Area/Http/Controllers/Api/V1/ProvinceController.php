@@ -14,7 +14,7 @@ class ProvinceController extends Controller
             return Province::query()
                 ->select(['id', 'name'])
                 ->orderBy('name', 'asc')
-                ->get();
+                ->paginate(15);
         });
 
         return response()->success('Get all provinces', compact('provinces'));

@@ -13,7 +13,7 @@ class ProvinceController extends Controller
     {
         $provinces = Province::query()
             ->orderBy('name', 'asc')
-            ->paginate();
+            ->paginate(15);
         
         return response()->success('',compact('provinces'));
     }

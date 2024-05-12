@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Modules\Product\Models\Category;
-use Modules\Specification\Http\Requests\storeRequest;
+use Modules\Specification\Http\Requests\StoreRequest;
 use Modules\Specification\Models\Specification;
 
 class SpecificationController extends Controller
@@ -22,7 +22,7 @@ class SpecificationController extends Controller
         return response()->success('',compact('specifications','categories'));
     }
 
-    public function store(storeRequest $request): JsonResponse
+    public function store(StoreRequest $request): JsonResponse
     {
         $specification = Specification::query()->create([
             'name' => $request->input('name'),
