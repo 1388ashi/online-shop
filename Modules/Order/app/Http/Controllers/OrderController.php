@@ -52,7 +52,7 @@ class OrderController extends Controller
     }
     public function parchase(ParchaseRequest $request) : JsonResponse 
     {
-        // try {
+        try {
             $address = Address::findOrFail($request->address_id);
             $customer = Customer::findOrFail(auth('customer-api')->user()->id);
             
@@ -93,9 +93,9 @@ class OrderController extends Controller
             $url = url("/payment");
 
             return response()->success('', compact('url'));
-        // } catch (\Exception $exception) {
-        //     return response()->error('مشکلی رخ داده است: ' . $exception->getMessage(), 500);
-        // }
+        } catch (\Exception $exception) {
+            return response()->error('مشکلی رخ داده است: ' . $exception->getMessage(), 500);
+        }
     }
     public function verify(Request $request, string $driver): Renderable
     {
@@ -136,12 +136,6 @@ class OrderController extends Controller
                 'order_id' => $order->id,
                 'status' => $order->status
             ]);    
-            
-            //Update order status
-            // $order = $payment->order;
-            // // $order->status = OrderStatus::STATUS_SUCCESS->value;
-            // $order->save();
-            
                 DB::commit();
                 
                 $message = 'پرداخت با موفقیت انجام شد.';
