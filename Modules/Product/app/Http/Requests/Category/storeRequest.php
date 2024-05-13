@@ -2,9 +2,7 @@
 
 namespace Modules\Product\Http\Requests\Category;
 
-use Illuminate\Support\Facades\Auth;
 use Modules\Core\App\Helpers\Helpers;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Product\Models\Category;
 
