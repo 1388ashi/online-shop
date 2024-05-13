@@ -4,7 +4,6 @@ namespace Modules\Specification\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Modules\Product\Models\Category;
 use Modules\Specification\Http\Requests\StoreRequest;
 use Modules\Specification\Models\Specification;
@@ -36,7 +35,7 @@ class SpecificationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Specification $specification): JsonResponse
+    public function update(StoreRequest $request, Specification $specification): JsonResponse
     {
         $specification->update([
             'name' => $request->input('name'),

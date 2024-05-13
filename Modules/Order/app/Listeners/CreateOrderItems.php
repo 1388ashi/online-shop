@@ -27,7 +27,7 @@ class createOrderItems
         $order = $event->order;
         $customerId = Auth::guard('customer-api')->user()->id;
         $carts = Cart::query()->where('customer_id',$customerId)->get();
-    
+
         $carts->map(function ($cart) use ($order){
             OrderItem::query()->create([
                 'order_id' => $order->id,

@@ -16,5 +16,6 @@
     "Order": true,
     "Invoice": true,
     "Homr": true,
-    "Home": true
+    "Home": true,
+    "Dashboard": true
 }

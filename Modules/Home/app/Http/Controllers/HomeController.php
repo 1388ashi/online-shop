@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function home(): JsonResponse
     {
-        $sliders = Slider::query()->where('status',1)->select('id','link','status')->latest('id')->get();
+        $sliders = Slider::query()->where('status',1)->select('id','link','status')->latest('id')->take(4)->get();
         $lastProducts = Product::query()
         ->select('id', 'title', 'discount', 'discount_type', 'price')
         ->latest('id')

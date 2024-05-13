@@ -33,7 +33,7 @@ class AuthController extends Controller
         }else{
             $isCustomer = false;
         }
-        return response()->success('',compact('isCustomer','mobile'));
+        return response()->success('این شماره در سایت وجود دارد',compact('isCustomer','mobile'));
     }
     
     public function sendToken(Request $request): JsonResponse {
@@ -72,7 +72,7 @@ class AuthController extends Controller
                 ];
             }
 
-            return response()->success('', compact('data'));
+            return response()->success('مشتری با موفقیت راستی آزمایی شد. ', compact('data'));
         } catch(Exception $exception) {
             Log::error($exception->getTraceAsString());
             return response()->error(
@@ -100,7 +100,7 @@ class AuthController extends Controller
         }
     }
     public function login(Request $request): JsonResponse {
-
+        
         $credentials = $request->validate([
             'mobile' => ['required', 'digits:11',new IranMobile],
             'password' => ['required', 'min:3'],
@@ -109,7 +109,7 @@ class AuthController extends Controller
         $password = $request->password;
         
         $customer = Customer::query()->where('mobile', $mobile)->first();
-            
+        
         if (!$customer || !Hash::check($password, $customer->password)) {
             return response()->error('اطلاعات وارد شده اشتباه است',422);
         }
@@ -121,11 +121,10 @@ class AuthController extends Controller
             'access_token' => $token->plainTextToken,
             'token_type' => 'Bearer'
         ];
-
+        
         return response()->success('مشتری با موفقیت وارد شد', compact('data'));
     }
     public function logout(Request $request) {
-
         if (Auth::guard('customer-api')->check()) {
             $customer = Auth::guard('customer-api')->user();
             $customer->currentAccessToken()->delete();

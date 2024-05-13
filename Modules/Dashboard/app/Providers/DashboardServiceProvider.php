@@ -1,20 +1,16 @@
 <?php
 
-namespace Modules\Order\Providers;
+namespace Modules\Dashboard\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Modules\Order\Events\CreateOrders;
-use Modules\Order\Listeners\createLogsOrder;
-use Modules\Order\Listeners\createOrderItems;
-use Modules\Order\Listeners\deleteCustomerCart;
-use Modules\Order\Providers\RouteServiceProvider;
+use Modules\Dashboard\Providers\RouteServiceProvider;
 
-class OrderServiceProvider extends ServiceProvider
+class DashboardServiceProvider extends ServiceProvider
 {
-    protected string $moduleName = 'Order';
+    protected string $moduleName = 'Dashboard';
 
-    protected string $moduleNameLower = 'order';
+    protected string $moduleNameLower = 'dashboard';
 
     /**
      * Boot the application events.
@@ -34,9 +30,7 @@ class OrderServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app['events']->listen(CreateOrders::class, createLogsOrder::class);
-        $this->app['events']->listen(CreateOrders::class, createOrderItems::class);
-        $this->app['events']->listen(CreateOrders::class, deleteCustomerCart::class);
+        $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
     }
 
@@ -96,18 +90,23 @@ class OrderServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
 
-        $componentNamespace = str_replace('/', '\\', config('modules.namespace').'\\'.$this->moduleName.'\\'.ltrim(config('modules.paths.generator.component-class.path'), config('modules.paths.app_folder','')));
+        $componentNamespace = str_replace('/', '\\', config('modules.namespace').'\\'.$this->moduleName.'\\'.ltrim(config('modules.paths.generator.component-class.path'), config('modules.paths.app_folder', '')));
         Blade::componentNamespace($componentNamespace, $this->moduleNameLower);
     }
 
     /**
      * Get the services provided by the provider.
+     *
+     * @return array<string>
      */
     public function provides(): array
     {
         return [];
     }
 
+    /**
+     * @return array<string>
+     */
     private function getPublishableViewPaths(): array
     {
         $paths = [];
