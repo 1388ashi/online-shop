@@ -15,5 +15,5 @@ use Modules\Dashboard\Http\Controllers\DashboardController;
 */
 
 Route::name('api')->prefix('admin')->middleware('auth:admin-api')->group(function() {
-    Route::get('/dashboard',[DashboardController::class,'index']);
+    // Route::get('/dashboard',[DashboardController::class,'index']);
 });
