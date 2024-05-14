@@ -33,7 +33,7 @@ class AuthController extends Controller
         }else{
             $isCustomer = false;
         }
-        return response()->success('این شماره در سایت وجود دارد',compact('isCustomer','mobile'));
+        return response()->success('',compact('isCustomer','mobile'));
     }
     
     public function sendToken(Request $request): JsonResponse {
