@@ -47,7 +47,7 @@ class AuthController extends Controller
         
         $smsToken = SmsToken::updateOrCreate(
             ['mobile' => $mobile],
-            ['token' => $verificationCode, 'expires_at' => $addTime]
+            ['token' => $verificationCode, 'expires_at' => $addTime,'mobile_verified_at' => now()]
         );
         return response()->success('توکن با موفقیت ارسال شد.');
     }
