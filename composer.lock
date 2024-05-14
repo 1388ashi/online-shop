@@ -2749,16 +2749,16 @@
         },
         {
             "name": "nwidart/laravel-modules",
-            "version": "v11.0.9",
+            "version": "v11.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nWidart/laravel-modules.git",
-                "reference": "f70f91e0d0d1f6bf16c62c9b17be3eaa3763f7cb"
+                "reference": "4522002fc94cf4a1555337394f7268dd14651806"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/f70f91e0d0d1f6bf16c62c9b17be3eaa3763f7cb",
-                "reference": "f70f91e0d0d1f6bf16c62c9b17be3eaa3763f7cb",
+                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/4522002fc94cf4a1555337394f7268dd14651806",
+                "reference": "4522002fc94cf4a1555337394f7268dd14651806",
                 "shasum": ""
             },
             "require": {
@@ -2819,7 +2819,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nWidart/laravel-modules/issues",
-                "source": "https://github.com/nWidart/laravel-modules/tree/v11.0.9"
+                "source": "https://github.com/nWidart/laravel-modules/tree/v11.0.10"
             },
             "funding": [
                 {
@@ -2831,7 +2831,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-30T00:31:39+00:00"
+            "time": "2024-05-05T19:07:30+00:00"
         },
         {
             "name": "phpoption/phpoption",
