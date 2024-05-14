@@ -16,8 +16,8 @@ class CustomerStoreRequest extends FormRequest
             'name' => 'required|min:3|max:120',
             'mobile' => ['required', 'digits:11',new IranMobile],
             'status' => 'required|in:0,1',
-            'email' => 'required|email',
-            'national_code' => 'required|regex:/^[0-9]{10}$/|unique:customers,national_code',
+            'email' => 'nullable|email',
+            'national_code' => 'nullable|regex:/^[0-9]{10}$/|unique:customers,national_code',
             'password' => 'required|min:6',
         ];
     }
