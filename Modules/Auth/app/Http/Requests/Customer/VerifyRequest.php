@@ -19,6 +19,7 @@ class VerifyRequest extends FormRequest
         return [
             'mobile' => ['required', 'digits:11',new IranMobile],
             'sms_token' => ['required', 'integer'],
+            'type' => ['required', 'in:register,login'],
         ];
     }
     protected function passedValidation(): void
