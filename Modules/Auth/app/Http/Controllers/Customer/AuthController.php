@@ -41,7 +41,7 @@ class AuthController extends Controller
             'mobile' => ['required',new IranMobile],
         ]);
         $mobile = $request->mobile;
-        $verificationCode = '1234';
+        $verificationCode = 1234;
         $currentTime = Carbon::now(); 
         $addTime = $currentTime->addMinutes(2);
         
