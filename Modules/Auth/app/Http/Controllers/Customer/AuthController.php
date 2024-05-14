@@ -47,16 +47,13 @@ class AuthController extends Controller
         
         $smsToken = SmsToken::updateOrCreate(
             ['mobile' => $mobile],
-            ['token' => $verificationCode, 'expires_at' => $addTime,'mobile_verified_at' => now()]
+            ['token' => $verificationCode, 'expires_at' => $addTime]
         );
         return response()->success('توکن با موفقیت ارسال شد.');
     }
 
     public function verify(VerifyRequest $request): JsonResponse{
         try {
-            $customer = Customer::query()->where('mobile', $request->mobile)->first();
-            $customer->mobile_verified_at = now();
-            $customer->save();
             
             $request->smsToken->verified_at = now();
             $request->smsToken->save();
@@ -64,6 +61,7 @@ class AuthController extends Controller
             $data['mobile'] = $request->input('mobile');
             
             if ($request->type === 'login') {
+                $customer = Customer::query()->where('mobile', $request->mobile)->first();
                 
                 $token = $customer->createToken('authToken');
                 Sanctum::actingAs($customer);
