@@ -15,7 +15,6 @@ class CustomerStoreRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:120',
             'mobile' => ['required', 'digits:11',new IranMobile],
-            'status' => 'required|in:0,1',
             'email' => 'nullable|email',
             'national_code' => 'nullable|regex:/^[0-9]{10}$/|unique:customers,national_code',
             'password' => 'required|min:6',

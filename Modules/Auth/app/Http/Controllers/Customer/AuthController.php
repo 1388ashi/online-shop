@@ -90,7 +90,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'mobile' => $request->mobile,
-                'status' => $request->status,
+                'status' => 1,
                 'national_code' => $request->national_code,
                 'password' => bcrypt($request->password),
             ]);
