@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Core\Http\Controllers\MediaController;
+use Modules\Core\App\Http\Controllers\MediaController;
 use Modules\Product\Http\Controllers\CategoryController;
 use Modules\Product\Http\Controllers\ProductController;
 
@@ -20,7 +20,7 @@ Route::name('api')->prefix('admin')->middleware('auth:admin-api')->group(functio
     Route::apiResource('categories',CategoryController::class);
     Route::apiResource('products',ProductController::class);
     
-    Route::delete('media-image{media}',[MediaController::class, 'destroy']);
+    Route::delete('media/{media}',[MediaController::class, 'destroy']);
     
 });
 Route::name('api')->prefix('front')->group(function() {

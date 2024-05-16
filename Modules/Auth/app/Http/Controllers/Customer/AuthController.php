@@ -62,7 +62,7 @@ class AuthController extends Controller
             
             if ($request->type === 'login') {
                 $customer = Customer::query()->where('mobile', $request->mobile)->first();
-                
+                dd($customer);
                 $token = $customer->createToken('authToken');
                 Sanctum::actingAs($customer);
                 

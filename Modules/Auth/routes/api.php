@@ -29,6 +29,6 @@ Route::name('api')->prefix('admin')->middleware('auth:admin-api')->group(functio
     Route::post('/logout',[admin::class,'logout'])->name('admin.logout');
 });
 Route::name('api')->prefix('customer')->middleware('auth:customer-api')->group(function() {
-    Route::post('/logout',[customer::class,'logout'])->name('admin.logout');
+    Route::post('/logout',[customer::class,'logout'])->name('customer.logout');
 
 });
