@@ -88,10 +88,10 @@ class AuthController extends Controller
         if (empty($customer)) {
             $customer = Customer::query()->create([
                 'name' => $request->name,
-                'email' => $request->email,
+                // 'email' => $request->email,
                 'mobile' => $request->mobile,
-                'status' => 1,
-                'national_code' => $request->national_code,
+                'status' => true,
+                // 'national_code' => $request->national_code,
                 'password' => bcrypt($request->password),
             ]);
 
