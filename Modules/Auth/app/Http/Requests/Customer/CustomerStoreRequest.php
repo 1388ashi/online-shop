@@ -14,7 +14,7 @@ class CustomerStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:120',
-            'mobile' => ['required', 'digits:11'],
+            'mobile' => ['required', 'digits:11',new IranMobile],
             'password' => 'required|min:6',
         ];
     }

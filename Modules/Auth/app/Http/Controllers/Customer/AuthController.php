@@ -83,20 +83,19 @@ class AuthController extends Controller
         }
     }
     public function register(CustomerStoreRequest $request): JsonResponse {
-        $customer = Customer::query()->where('mobile', $request->mobile)->first();
+        $customer = Customer::query()->where('mobile', $request->mobile)->exists();
 
-        if (empty($customer)) {
+        if ($customer == 0) {
             $customer = Customer::query()->create([
                 'name' => $request->name,
-                // 'email' => $request->email,
                 'mobile' => $request->mobile,
                 'status' => true,
-                // 'national_code' => $request->national_code,
                 'password' => bcrypt($request->password),
             ]);
 
             return response()->success('مشتری با موفقیت ثبت نام کرد');
-        }else{
+        }
+        else{
             return response()->error('شماره در سایت ثبت نام کرده است'); 
         }
     }
