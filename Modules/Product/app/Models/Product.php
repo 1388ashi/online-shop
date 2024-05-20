@@ -58,7 +58,7 @@ class Product extends Model implements Viewable, HasMedia
         return $this->belongsTo(Category::class);
     }
     public function specifications() : BelongsToMany{
-        return $this->belongsToMany(Specification::class);
+        return $this->belongsToMany(Specification::class)->withPivot('value');
     }
     public function carts(): HasMany
     {
