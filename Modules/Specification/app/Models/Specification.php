@@ -30,6 +30,6 @@ class Specification extends Model
       return $this->belongsToMany(Category::class);
     }
     public function products() : BelongsToMany{
-      return $this->belongsToMany(Product::class);
+      return $this->belongsToMany(Product::class)->withPivot('value');
     }
 }
