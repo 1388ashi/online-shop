@@ -30,9 +30,9 @@ class ProductController extends Controller
         'category:id,name',
         'specifications:id,name',
         'specifications' => function ($query) use ($product) {
-            $query->select('specifications.id', 'specifications.name', 'product_specification.value as pivot_value')
-                ->join('product_specification', 'specifications.id', '=', 'product_specification.specification_id')
-                ->where('product_specification.product_id', $product->id);
+            $query->select('specifications.id', 'specifications.name', 'ps.value as pivot_value')
+                ->join('product_specification as ps', 'specifications.id', '=', 'ps.specification_id')
+                ->where('ps.product_id', $product->id);
         }
     ]);
 
