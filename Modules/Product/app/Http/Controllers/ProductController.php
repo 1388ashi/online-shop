@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         $product->load([
             'category:id,name',
-            'specifications:id,name,value',
+            'specifications:id,name',
             'specifications' => function ($query) {
                 $query->select('specifications.id', 'specifications.name', 'pivot.value');
             }
