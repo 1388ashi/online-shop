@@ -16,7 +16,7 @@ class SpecificationController extends Controller
     public function index(): JsonResponse
     {
         $categories = Category::query()->whereNull('parent_id')->select(['id','name'])->get();
-        $specifications = Specification::query()->latest('id')->paginate();
+        $specifications = Specification::query()->with('categories:id,name')->latest('id')->paginate();
 
         return response()->success('',compact('specifications','categories'));
     }
