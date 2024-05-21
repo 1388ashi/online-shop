@@ -18,7 +18,7 @@ class AdminController extends Controller
             where('id',$admin_id->id)
             ->select(['id', 'name', 'mobile', 'email'])
             ->get();
-        return response()->success('', compact('admin','permission'));
+        return response()->success('', compact('admin'));
     }
     /**
      * Display a listing of the resource.
