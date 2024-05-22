@@ -52,7 +52,7 @@ class AdminController extends Controller
         $admin->update([
             'name' => $request->name,
             'mobile' => $request->mobile,
-            'password' => Hash::make($password),
+            'password' => bcrypt($password),
             'status' => $request->status 
         ]);
         $admin->assignRole($request->role);
