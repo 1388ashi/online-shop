@@ -39,19 +39,22 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
         ]);
         
-        $admin->assignRole('admin');
+        $admin->assignRole($request->role);
         
         return response()->success('ادمین با موفقیت ثبت شد.');
     }
     
     public function update(updateRequest $request, Admin $admin): JsonResponse
     {
+         $password = filled($request->password) ? $request->password : $admin->password;
+        
         $admin->update([
             'name' => $request->name,
-            'email' => $request->email,
             'mobile' => $request->mobile,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($password),
+            'status' => $request->status 
         ]);
+        $admin->assignRole($request->role);
         
         return response()->success('ادمین با موفقیت به روزرسانی شد.');
     }
