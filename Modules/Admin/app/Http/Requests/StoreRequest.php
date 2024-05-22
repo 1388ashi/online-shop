@@ -5,7 +5,7 @@ namespace Modules\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class storeRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
