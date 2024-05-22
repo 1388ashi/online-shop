@@ -17,6 +17,7 @@ class AdminController extends Controller
         $admin = Admin::
             where('id',$admin_id->id)
             ->select(['id', 'name', 'mobile', 'email'])
+            ->with('roles')
             ->get();
         return response()->success('', compact('admin'));
     }
