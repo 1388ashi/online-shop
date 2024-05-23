@@ -36,7 +36,7 @@ class RoleController extends Controller
             ->latest('id')
             ->select(['id', 'name', 'label', 'created_at'])
             ->paginate();
-         $permission = permissions();
+         $permission = $this->permissions();
         return response()->success('',compact('roles','permission'));
     }
     
