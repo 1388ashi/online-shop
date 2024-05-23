@@ -17,7 +17,7 @@ class ProductController extends Controller
         $categories = Category::query()->whereNull('parent_id')->select(['id','name'])->get();
 
         $products = Product::query()
-        ->with(['category:id,name','specificaion:id,title'])
+        ->with(['category:id,name','specificaions:id,title'])
         ->latest('id')
         ->paginate();
 
