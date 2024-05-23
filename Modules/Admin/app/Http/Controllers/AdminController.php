@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function index(): JsonResponse
     {
-        $admins = Admin::query()->paginate();
+        $admins = Admin::query()->with('roles)->paginate();
 
         return response()->success('',compact('admins'));
     }
