@@ -36,8 +36,8 @@ class RoleController extends Controller
             ->latest('id')
             ->select(['id', 'name', 'label', 'created_at'])
             ->paginate();
-
-        return response()->success('',compact('roles'));
+         $permission = permissions();
+        return response()->success('',compact('roles','permission));
     }
     
     public function store(RoleStoreRequest $request): JsonResponse
