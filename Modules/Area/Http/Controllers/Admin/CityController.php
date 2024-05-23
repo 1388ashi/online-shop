@@ -42,7 +42,7 @@ class CityController extends Controller
         //clear cache
         City::clearCitiesCacheByProvince($province->id);
 
-        return response()->success('شهر با موفقیت حذف شد.');
+        return response()->success('شهر با موفقیت ثبت شد.');
     }
     
     public function update(CityUpdateRequest $request, City $city): JsonResponse
