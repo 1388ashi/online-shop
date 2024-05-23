@@ -29,12 +29,14 @@ class CategoryController extends Controller
      */
     public function store(storeRequest $request): JsonResponse
     {
+        
         $category = Category::query()->create([
             'name' => $request->input('name'),
             'parent_id' => $request->input('parent_id'),
             'featured' => $request->input('featured'),
             'status' => $request->input('status'),
         ]);
+        dd($request);
         $category->uploadFiles($request);
         return response()->success('دسته بندی با موفقیت ثبت شد.');
     }
