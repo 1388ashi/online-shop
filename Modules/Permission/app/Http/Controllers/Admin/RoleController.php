@@ -27,6 +27,7 @@ class RoleController extends Controller
         return Permission::query()
             ->oldest('id')
             ->select(['id', 'name', 'label'])
+            ->with('roles:id,name,label,created_at')
             ->get();
     }
 
@@ -35,6 +36,7 @@ class RoleController extends Controller
         $roles = Role::query()
             ->latest('id')
             ->select(['id', 'name', 'label', 'created_at'])
+            ->with('permissions')
             ->paginate();
          $permission = $this->permissions();
         return response()->success('',compact('roles','permission'));
