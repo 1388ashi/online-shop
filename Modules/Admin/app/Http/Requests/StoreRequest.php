@@ -15,7 +15,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required',
             'mobile' => ['required','string','numeric','unique:admins,mobile','digits:11'],
-            'email' => 'nullable|email
+            'email' => 'nullable|email'
         ];
     }
 
