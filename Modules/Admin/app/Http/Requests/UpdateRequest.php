@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
                 'max:12',
                 Rule::unique('admins')->ignore($this->route('admin')->id)
             ],
-            'label' => ['nullable', 'string', 'max:191'],
+             'email' => 'nullable|email'
             // 'permissions' => ['nullable', 'array'],
             // 'permissions.*' => ['required', 'string', Rule::exists('permissions', 'name')],
         ];
