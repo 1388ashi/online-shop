@@ -16,10 +16,10 @@ class ProductController extends Controller
     {
         $categories = Category::query()->whereNull('parent_id')->select(['id','name'])->get();
 
-        $products = Product::query()
-        ->with(['category:id,name','specifications:id,name'])
+      $products = Product::with(['specifications', 'category', 'specifications.categories'])
         ->latest('id')
         ->paginate();
+
 
         return response()->success('',compact('products','categories'));
     }
