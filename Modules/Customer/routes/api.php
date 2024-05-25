@@ -19,7 +19,7 @@ use Modules\Customer\Http\Controllers\CustomerController as customer;
     Route::name('api')->prefix('admin')->middleware('auth:admin-api')->group(function() {
         Route::get('/customers', [admin::class, 'index']);
         Route::get('/customers/{customer}', [admin::class, 'show']);
-        Route::delete('/customers/destroy', [admin::class, 'destroy']);
+        Route::delete('/customers/{customer}', [admin::class, 'destroy']);
     });
 
     Route::name('api')->prefix('customer')->middleware('auth:customer-api')->group(function() {
