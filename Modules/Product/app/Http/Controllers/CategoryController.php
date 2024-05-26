@@ -29,8 +29,6 @@ class CategoryController extends Controller
      */
     public function store(storeRequest $request): JsonResponse
     {
-        
-        dd($request);
         $category = Category::query()->create([
             'name' => $request->input('name'),
             'parent_id' => $request->input('parent_id'),
