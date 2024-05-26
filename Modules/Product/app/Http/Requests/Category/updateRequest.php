@@ -21,10 +21,12 @@ class updateRequest extends FormRequest
     }
     protected function passedValidation(): void
     {
-        $category = Category::query()->where('id', $this->parent_id)->exists();
-        if ($category == null) {
-            throw Helpers::makeValidationException('دسته بندی با این شناسه وجود ندارد');
-        }
+         if(filled($this->parent_id)){
+            $category = Category::query()->where('id', $this->parent_id)->exists();
+            if ($category == null) {
+                throw Helpers::makeValidationException('دسته بندی با این شناسه وجود ندارد');
+            }
+         }
     }
     /**
      * Determine if the user is authorized to make this request.
