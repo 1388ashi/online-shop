@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Modules\Customer\Http\Requests\ChangePassRequest;
-use Modules\Customer\Http\Requests\updateRequest;
+use Modules\Customer\Http\Requests\UpdateRequest;
 use Modules\Customer\Models\Customer;
 
 class CustomerController extends Controller
@@ -22,7 +22,7 @@ class CustomerController extends Controller
         return response()->success('', compact('customer'));
     }
 
-    public function update(updateRequest $request, Customer $customer): JsonResponse
+    public function update(UpdateRequest $request, Customer $customer): JsonResponse
     {
         try {
             $customer->update($request->validated());
