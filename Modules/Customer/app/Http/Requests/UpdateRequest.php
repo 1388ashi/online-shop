@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Modules\Core\App\Rules\IranMobile;
 
-class updateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
