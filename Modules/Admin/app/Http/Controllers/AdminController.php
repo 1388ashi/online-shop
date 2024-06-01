@@ -5,8 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Modules\Admin\Http\Requests\storeRequest;
-use Modules\Admin\Http\Requests\updateRequest;
+use Modules\Admin\Http\Requests\StoreRequest;
+use Modules\Admin\Http\Requests\UpdateRequest;
 use Modules\Admin\Models\Admin;
 
 class AdminController extends Controller
@@ -30,7 +30,7 @@ class AdminController extends Controller
         return response()->success('',compact('admins'));
     }
 
-    public function store(storeRequest $request): JsonResponse
+    public function store(StoreRequest $request): JsonResponse
     {
         $admin = Admin::query()->create([
             'name' => $request->input('name'),
@@ -44,7 +44,7 @@ class AdminController extends Controller
         return response()->success('ادمین با موفقیت ثبت شد.');
     }
     
-    public function update(updateRequest $request, Admin $admin): JsonResponse
+    public function update(UpdateRequest $request, Admin $admin): JsonResponse
     {
         $admin->update([
             'name' => $request->name,
