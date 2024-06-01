@@ -12,7 +12,7 @@ class SliderController extends Controller
         
     public function index()
     {
-        $sliders =  Slider::all();
+        $sliders =  Slider::latest('id')->get();
 
         return response()->success('',compact('sliders'));
     }
