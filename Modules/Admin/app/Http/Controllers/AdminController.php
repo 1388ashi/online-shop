@@ -5,8 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Modules\Admin\Http\Requests\StoreRequest;
-use Modules\Admin\Http\Requests\UpdateRequest;
+use Modules\Admin\Http\Requests\storeRequest;
+use Modules\Admin\Http\Requests\updateRequest;
 use Modules\Admin\Models\Admin;
 
 class AdminController extends Controller
@@ -17,21 +17,20 @@ class AdminController extends Controller
         $admin = Admin::
             where('id',$admin_id->id)
             ->select(['id', 'name', 'mobile', 'email'])
-            ->with('roles')
             ->get();
-        return response()->success('', compact('admin'));
+        return response()->success('', compact('admin','permission'));
     }
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        $admins = Admin::query()->with('roles')->paginate();
+        $admins = Admin::query()->where('id' ,'!=', Auth::user()->id)->paginate();
 
         return response()->success('',compact('admins'));
     }
 
-    public function store(StoreRequest $request): JsonResponse
+    public function store(storeRequest $request): JsonResponse
     {
         $admin = Admin::query()->create([
             'name' => $request->input('name'),
@@ -40,22 +39,18 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
         ]);
         
-        $admin->assignRole($request->role);
+        $admin->assignRole('admin');
         
         return response()->success('ادمین با موفقیت ثبت شد.');
     }
     
-    public function update(UpdateRequest $request, Admin $admin): JsonResponse
+    public function update(updateRequest $request, Admin $admin): JsonResponse
     {
-         $password = filled($request->password) ? $request->password : $admin->password;
-        
         $admin->update([
             'name' => $request->name,
+            'email' => $request->email,
             'mobile' => $request->mobile,
-            'password' => bcrypt($password),
-            'status' => $request->status 
         ]);
-        $admin->assignRole($request->role);
         
         return response()->success('ادمین با موفقیت به روزرسانی شد.');
     }
